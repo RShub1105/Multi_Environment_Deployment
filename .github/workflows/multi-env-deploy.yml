@@ -1,10 +1,8 @@
 name: Multi-Environment Deployment
 
-# Task 3: Triggered manually using workflow_dispatch
 on:
   workflow_dispatch:
     inputs:
-      # Task 3 & 4: Accept user input named 'environment' with restrictions
       environment:
         description: 'Select the target deployment environment'
         required: true
@@ -17,16 +15,12 @@ on:
 
 jobs:
   deploy:
-    # Task 5: Job runs on ubuntu-latest
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository Code
         uses: actions/checkout@v4
 
-      # Task 5: Print a message indicating which environment is being deployed to
       - name: Execute Deployment Logic
         run: |
           echo "Starting deployment sequence..."
           echo "Deploying to target environment: ${{ github.event.inputs.environment }}"
-          echo "Deployment to ${{ github.event.inputs.environment }} completed successfully!"
